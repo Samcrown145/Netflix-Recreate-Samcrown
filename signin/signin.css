@@ -17,6 +17,8 @@ body {
     
     background: linear-gradient(to bottom, #230909 18%, #150606 40%, #0d0404 100%);
       min-height: 100vh;
+    min-height: 100vh;
+    min-height: 100dvh;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -207,7 +209,7 @@ footer {
     width: 100%;
     box-sizing: border-box;
     padding: 80px 150px;
-    margin-top: auto;  
+    margin-top: 280px;  
     color:RGBA(255, 255, 255, 0.7) ;
     background-color: #161616;
     /* margin: 200px; */
