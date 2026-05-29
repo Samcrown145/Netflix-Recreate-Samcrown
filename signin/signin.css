@@ -207,7 +207,7 @@ footer {
     width: 100%;
     box-sizing: border-box;
     padding: 80px 150px;
-    margin-top: 240px;  
+    margin-top: auto;  
     color:RGBA(255, 255, 255, 0.7) ;
     background-color: #161616;
     /* margin: 200px; */
@@ -246,7 +246,6 @@ footer {
     }
     footer {
         padding: 60px 40px;
-        margin-top: 120px;
     }
     .footer-links {
         gap: 60px;
@@ -270,7 +269,6 @@ footer {
     }
     footer {
         padding: 40px 20px;
-        margin-top: 80px;
     }
     .footer-links {
         display: grid;
