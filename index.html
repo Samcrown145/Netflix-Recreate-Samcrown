@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="./Netflix.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="./images/Screenshot_2026-05-26_111340-removebg-preview.png">
+</head>
+
+<body>
+    <section class="background-img-section">
+        <nav class="nav-bar">
+            <div class="logo">
+                <img src="./images/imageye___-_imgi_2_Netflix_Logo_PMS.png" alt="">
+            </div>
+            <div class="Sign-in-button">
+                <a href="./signin/signin.html">
+                    <button>Sign in</button>
+                </a>
+            </div>
+        </nav>
+
+        <div class="hero-section">
+            <div class="hero-text">
+                <h1>Unlimited movies, TV shows, and more</h1>
+                <p>Starts at ₦2,500. Cancel anytime.</p>
+            </div>
+            <h3>Ready to watch? Enter your email to create or restart your membership.
+            </h3>
+            <div class="form">
+                <input type="email" id="email" placeholder=" ">
+                <label for="email">Email address</label>
+
+                 
+                     <button><a style="color: white;text-decoration: none;" href="./signin/signin.html">Get Started</a> <i class="fa-solid fa-chevron-right">
+                 </i></button>
+                 
+            </div>
+        </div>
+    </section>
+
+    <section class="curve-container">
+        <div class="curve-overlay"></div>
+        <div class="Trending-container">
+            <h2>Trending Now</h2>
+
+            <div class="carousel-container">
+                <button class="carousel-btn prev-btn"
+                    onclick="this.parentElement.querySelector('.carousel-track').scrollBy({left: -400, behavior: 'smooth'})">&lsaquo;</button>
+                <div class="carousel-wrapper">
+                    <div class="carousel-track">
+                        <div class="carousel-item">
+                            <div class="rank-number">1</div>
+                            <img src="./images/imageye___-_imgi_34_AAAABes76sJdwVfZ-KSAdzkKSwUMmVnVNt2xlYdFYR9fv-k1Lkm1kcekREgR0Wtcxb6K7IcGGIzxUqu4AZY7tTzcG4nL_pHtiFXvdzk.webp"
+                                alt=" ">
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="rank-number">2</div>
+                            <img src="./images/imageye___-_imgi_35_AAAABT3fC8I6khza3PL7vuoiqEcPs6Yko6i66Dukx7OSb0mQ_g7MHT5KSHJXvY4s1by3qnDg7fGxVvDw2fd0G0XYXRL9FChbRkVLh5M.webp"
+                                alt=" ">
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="rank-number">3</div>
+                            <img src="./images/imageye___-_imgi_36_AAAABUQjcVCNF1L3aQz8_dT0VJdheJDF5Gl1UG6SDyobNWKk5pkZiKoGu4rGKbjl-oX9R5RyT2u-9VP6LzY5wMAaFMnWqVDIc83-kcn0p9W2Ftl_dkNeg_RaMxpKnY4b71vU94y8.webp"
+                                alt=" ">
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="rank-number">4</div>
+                            <img src="./images/imageye___-_imgi_37_AAAABWyCCrOmdEbZBIRq4DUZL6Xa9LPn9DvIEnoIVNelgxCX7JVtP9mVfBUEpBrwr2qavnyWURCGQHyxPs3rBZtoOkSdebMME9-QIE-dyQ44guS15spn36u4fLbIKzVO3XasdrYa.webp"
+                                alt=" ">
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="rank-number">5</div>
+                            <img src="./images/imageye___-_imgi_38_AAAABZ4ezVo61K2GyH4ZybaTO3jDTOIhbPcxxbdcIzy6jKM4QLl91msAEv7TanOsxxly-0qQMLdV7bHHKtlOyWXKmu_KGbyjnizuJNXrx4OAbUyWEj4PuRXKPsOMh5CHW1CqnYp-.webp"
+                                alt=" ">
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="rank-number">6</div>
+                            <img src="./images/imageye___-_imgi_39_AAAABTiNrZ_1C7knUHohvdsU_4PKLRl59bKubAsfjF3rpUGmLRRBt4WqC3mtPL8CZOzEBG9EWB2_j-zxsjyw9fytCy_Td3cx3i6Y79WfBsbxY5zhiEJqrpXLSMCLwsc_WQLxExa2.webp"
+                                alt=" ">
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="rank-number">7</div>
+                            <img src="./images/imageye___-_imgi_40_AAAABaVXphhPzy58tJ3rd8QfNF5NcfcfNfY5BgnNHimngTEVemB8AL4fdcqXvOx8_0W5zGAbzg3prRKtcfFkwsfE813oiYiuIoYrXdQME5LO71LyHhCPJ0MZNuPOiB0wOOngD05e.webp"
+                                alt=" ">
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="rank-number">8</div>
+                            <img src="./images/imageye___-_imgi_41_AAAABRvUxbA8J_XEBAcLBoopI2mRAzqsOBFBOyWiTdCbDYy7i4PZ8z1ravzHPk5BUicginijXQjhvttMG2LByCQ9U9Wqt0RfmqSh3E5EDdmvjR18__zOyHaKE8RcW4aq1-lKoyaw.webp"
+                                alt=" ">
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="rank-number">9</div>
+                            <img src="./images/imageye___-_imgi_42_AAAABVEtdUZiz4F_VvRar_YRYkemWQzwLgXXV3Rb09mIeldUR-FE4-C7pGxRK25v2LwdjxDmfZFrXUnFeRkiZFE-ytZMaWLGwBi0X2HaLi7OHyWJXa5pxJAztWNwovRZ39Ou52zy.webp"
+                                alt=" ">
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="rank-number">10</div>
+                            <img src="./images/imageye___-_imgi_43_AAAABfl94jgRPXvo9bIR7KfulpWUvoNdVsp68z-k95dtTZ6yVuKfZx-uGKPNjUwkOo65xa60OilK73awFonAutInXvL6Z0PGXHvJtms.webp"
+                                alt=" ">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="next-section">
+                    <h2>More Reasons to join</h2>
+
+                    <div class="card-container">
+                        <div class="card-section">
+                            <h3>Enjoy on your TV</h3>
+                            <p>Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.
+                            </p>
+
+                            <img src="./images/download (52).svg" alt="">
+                        </div>
+
+                        <div class="card-section">
+                            <h3>Download your shows to watch offline</h3>
+                            <p>Save your favorites easily and always have something to watch.</p>
+
+                            <img src="./images/download (53).svg" alt="">
+                        </div>
+
+                        <div class="card-section">
+                            <h3>Watch everywhere</h3>
+                            <p>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</p>
+
+                            <img src="./images/download (54).svg" alt="">
+                        </div>
+
+                        <div class="card-section">
+                            <h3>Create profiles for kids</h3>
+                            <p>Send kids on adventures with their favorite characters in a space made just for them —
+                                free with your membership.</p>
+
+                            <img src="./images/download (55).svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="FAQ-section">
+                        <h2>Frequently Asked Questions</h2>
+                        <ul class="FAQ-button">
+
+                            <li>
+                                <input type="checkbox" id="faq-1" class="faq-toggle">
+                                <label for="faq-1" class="faq-header">
+                                    What is Netflix?
+                                    <img src="./images/download (56).svg" alt="" class="faq-icon">
+                                </label>
+                                <div class="faq-content">
+                                    <p>Netflix is a streaming service that offers a wide variety of award-winning TV
+                                        shows, movies, anime, documentaries, and more on thousands of internet-connected
+                                        devices.</p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <input type="checkbox" id="faq-2" class="faq-toggle">
+                                <label for="faq-2" class="faq-header">
+                                    How much does Netflix cost?
+                                    <img src="./images/download (56).svg" alt="" class="faq-icon">
+                                </label>
+                                <div class="faq-content">
+                                    <p>Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device,
+                                        all for one fixed monthly fee.</p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <input type="checkbox" id="faq-3" class="faq-toggle">
+                                <label for="faq-3" class="faq-header">
+                                    Where can I watch?
+                                    <img src="./images/download (56).svg" alt="" class="faq-icon">
+                                </label>
+                                <div class="faq-content">
+                                    <p>Watch anywhere, anytime. Sign in with your Netflix account to watch instantly on
+                                        the web at netflix.com from your personal computer or on any internet-connected
+                                        device that offers the Netflix app, including smart TVs, smartphones, tablets,
+                                        streaming media players and game consoles. <br>
+
+                                        You can also download your favorite shows with the iOS or Android app. Use
+                                        downloads to watch while you're on the go and without an internet connection.
+                                        Take Netflix with you anywhere.</p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <input type="checkbox" id="faq-4" class="faq-toggle">
+                                <label for="faq-4" class="faq-header">
+                                    How do I cancel?
+                                    <img src="./images/download (56).svg" alt="" class="faq-icon">
+                                </label>
+                                <div class="faq-content">
+                                    <p>Netflix is flexible. You can easily cancel your account online in two clicks.
+                                        There are no cancellation fees – start or stop your account anytime.</p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <input type="checkbox" id="faq-5" class="faq-toggle">
+                                <label for="faq-5" class="faq-header">
+                                    Where can I watch on Netflix?
+                                    <img src="./images/download (56).svg" alt="" class="faq-icon">
+                                </label>
+                                <div class="faq-content">
+                                    <p>Netflix has an extensive library of feature films, documentaries, TV shows,
+                                        anime, award-winning Netflix originals, and more. Watch as much as you want,
+                                        anytime you want.</p>
+                                </div>
+                            </li>
+
+
+                            <li>
+                                <input type="checkbox" id="faq-6" class="faq-toggle">
+                                <label for="faq-6" class="faq-header">
+                                    Is Netflix good for kids?
+                                    <img src="./images/download (56).svg" alt="" class="faq-icon">
+                                </label>
+                                <div class="faq-content">
+                                    <p>The Netflix Kids experience is included in your membership to give parents
+                                        control while kids enjoy family-friendly TV shows and movies in their own space.
+
+                                        Kids profiles come with PIN-protected parental controls that let you restrict
+                                        the maturity rating of content kids can watch and block specific titles you
+                                        don’t want kids to see.</p>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+
+                <button class="carousel-btn next-btn"
+                    onclick="this.parentElement.querySelector('.carousel-track').scrollBy({left: 400, behavior: 'smooth'})">&rsaquo;</button>
+            </div>
+
+            <div class="input-2-div">
+                <h3>Ready to watch? Enter your email to create or restart your membership.</h3>
+                <div class="form1">
+                    <input type="email" id="email" placeholder=" ">
+                    <label for="email">Email address</label>
+
+                    <button>Get Started <i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <a href="">Questions? Contact us.</a>
+
+                <ul class="footer-links">
+                    <div>
+                        <li><a href="">FAQ</a></li>
+                        <li><a href="">Investor Relations</a></li>
+                        <li><a href="">Privacy</a></li>
+                        <li><a href="">Speed Test</a></li>
+                    </div>
+
+                    <div>
+                        <li><a href="">Help Centre</a></li>
+                        <li><a href="">Jobs</a></li>
+                        <li><a href="">Cookie Preferences</a></li>
+                        <li><a href="">Legal Notices</a></li>
+                    </div>
+
+                    <div>
+                        <li><a href="">Account</a></li>
+                        <li><a href="">Ways to Watch</a></li>
+                        <li><a href="">Corporate Information</a></li>
+                        <li><a href="">Only on Netflix</a></li>
+                    </div>
+
+                    <div>
+                        <li><a href="">Media Centre</a></li>
+                        <li><a href="">Terms of Use</a></li>
+                        <li><a href="">Contact Us</a></li>
+                    </div>
+                </ul>
+                <div class="lang-button-container">
+                    <img src="./images/download (57).svg" alt="" class="lang-icon">
+                    <span class="lang-text">English</span>
+                    <span class="lang-arrow"></span>
+
+                </div>
+
+                <div class="footer-text">
+                    <p>Netlix Nigeria</p>
+                    <h4>This page is protected by Google reCAPTCHA to ensure you're not a bot.</h4>
+                </div>
+            </footer>
+
+        </div>
+
+
+    </section>
+
+
+</body>
+<script src="./script.js"></script>
+
+</html>
