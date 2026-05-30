@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflix</title>
     <link rel="stylesheet" href="./Netflix.css">
@@ -16,7 +16,7 @@
             <div class="logo">
                 <img src="./images/imageye___-_imgi_2_Netflix_Logo_PMS.png" alt="">
             </div>
-            <div class="Sign-in-button">
+            <div class="Sign-in-button" id="auth-button-container">
                 <a href="./signin/signin.html">
                     <button>Sign in</button>
                 </a>
@@ -31,8 +31,8 @@
             <h3>Ready to watch? Enter your email to create or restart your membership.
             </h3>
             <div class="form">
-                <input type="email" id="email" placeholder=" ">
-                <label for="email">Email address</label>
+                <input type="email" id="hero-email" placeholder=" ">
+                <label for="hero-email">Email address</label>
 
                  
                      <button><a style="color: white;text-decoration: none;" href="./signin/signin.html">Get Started</a> <i class="fa-solid fa-chevron-right">
@@ -310,5 +310,16 @@
 
 </body>
 <script src="./script.js"></script>
+<script type="module">
+    const authContainer = document.getElementById('auth-button-container');
+
+    // Check for our simulated session in localStorage
+    const userEmail = localStorage.getItem('userEmail');
+
+    if (userEmail) {
+        // If logged in, redirect straight to the browse page
+        window.location.href = "browse.html";
+    }
+</script>
 
 </html>

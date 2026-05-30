@@ -204,6 +204,17 @@ body {
     /* margin: 0 auto; */
 }
  
+.message {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    display: none; /* Hidden by default */
+}
+
+.message.success { display: block; background: #2e7d32; color: white; }
+.message.error { display: block; background: #d32f2f; color: white; }
+
 
 footer {
     width: 100%;

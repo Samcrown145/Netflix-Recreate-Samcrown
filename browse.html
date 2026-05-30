@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Browse</title>
+    <link rel="stylesheet" href="browse.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="./images/Screenshot_2026-05-26_111340-removebg-preview.png">
+</head>
+<body>
+    <header class="navbar">
+        <div class="left-nav">
+            <i class="fa-solid fa-bars hamburger" id="sidebar-toggle"></i>
+            <img src="./images/imageye___-_imgi_2_Netflix_Logo_PMS.png" alt="Netflix" class="logo">
+            <nav id="main-nav">
+                <a href="#" id="nav-home" class="active">Home</a>
+                <a href="#" id="nav-tv-shows">TV Shows</a>
+                <a href="#" id="nav-movies">Movies</a>
+                <a href="#" id="nav-new-popular">New & Popular</a>
+                <a href="#" id="nav-my-list">My List</a>
+            </nav>
+        </div>
+        <div class="right-nav">
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="Titles, people, genres">
+            </div>
+            <span id="welcome-user" class="welcome-text"></span>
+            <div class="profile-dropdown">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="User" class="avatar">
+                <div class="dropdown-content">
+                    <a href="#" id="sign-out">Sign out of Netflix</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Sidebar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="./images/imageye___-_imgi_2_Netflix_Logo_PMS.png" alt="Netflix" class="logo">
+            <i class="fa-solid fa-xmark close-sidebar" id="sidebar-close"></i>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="mobile-nav-link" data-target="home">Home</a>
+            <a href="#" class="mobile-nav-link" data-target="tv">TV Shows</a>
+            <a href="#" class="mobile-nav-link" data-target="movies">Movies</a>
+            <a href="#" class="mobile-nav-link" data-target="my-list">My List</a>
+        </nav>
+        <button id="mobile-sign-out" class="mobile-sign-out-btn">Sign Out of Netflix</button>
+    </div>
+
+    <main>
+        <section id="hero-banner" class="hero">
+            <div class="hero-content">
+                <h1 id="hero-title" class="hero-title"></h1>
+                <p id="hero-desc" class="hero-desc">When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.</p>
+                <div class="hero-btns">
+                    <button class="play-btn"><i class="fa-solid fa-play"></i> Play</button>
+                    <button class="info-btn"><i class="fa-solid fa-circle-info"></i> More Info</button>
+                </div>
+            </div>
+        </section>
+
+        <div id="rows-container">
+            <!-- Rows will be injected here dynamically -->
+        </div>
+    </main>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="video-player" style="width: 100%; height: 100%;"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { TMDB_ACCESS_TOKEN, TMDB_BASE_URL, IMG_PATH } from './api-config.js';
+
+        // Security check: If not logged in, go back to home
+        const userEmail = localStorage.getItem('userEmail');
+        if (!userEmail) {
+            window.location.href = "index.html";
+        }
+
+        const extractName = (email) => {
+            const part = email.split('@')[0];
+            const name = part.split(/[._]/)[0];
+            return name.charAt(0).toUpperCase() + name.slice(1);
+        };
+        document.getElementById('welcome-user').innerText = `Welcome, ${extractName(userEmail)}`;
+
+        // Shared Sign Out Logic
+        const handleSignOut = (e) => {
+            e.preventDefault();
+            localStorage.removeItem('userEmail');
+            sessionStorage.clear();
+            window.location.href = "index.html";
+        };
+
+        document.getElementById('sign-out').addEventListener('click', handleSignOut);
+        document.getElementById('mobile-sign-out').addEventListener('click', handleSignOut);
+
+        // Sidebar Logic
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const toggle = document.getElementById('sidebar-toggle');
+        const close = document.getElementById('sidebar-close');
+
+        const toggleSidebar = () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        };
+
+        toggle.addEventListener('click', toggleSidebar);
+        close.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+
+        // Mobile Nav Links Logic
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleSidebar();
+                const target = e.target.getAttribute('data-target');
+                if(target === 'home') document.getElementById('nav-home').click();
+                if(target === 'tv') document.getElementById('nav-tv-shows').click();
+                if(target === 'movies') document.getElementById('nav-movies').click();
+            });
+        });
+
+        // Navigation logic
+        const rowsContainer = document.getElementById('rows-container');
+
+        const clearUI = () => {
+            rowsContainer.innerHTML = '';
+            document.querySelectorAll('#main-nav a').forEach(a => a.classList.remove('active'));
+        };
+
+        document.getElementById('nav-home').addEventListener('click', (e) => {
+            e.preventDefault();
+            clearUI();
+            e.target.classList.add('active');
+            initHome();
+        });
+
+        document.getElementById('nav-tv-shows').addEventListener('click', (e) => {
+            e.preventDefault();
+            clearUI();
+            e.target.classList.add('active');
+            getMovies('/tv/popular?language=en-US', 'Popular TV Shows');
+            getMovies('/tv/top_rated?language=en-US', 'Top Rated TV Shows');
+        });
+
+        document.getElementById('nav-movies').addEventListener('click', (e) => {
+            e.preventDefault();
+            clearUI();
+            e.target.classList.add('active');
+            getMovies('/movie/popular?language=en-US', 'Popular Movies');
+            getMovies('/movie/top_rated?language=en-US', 'Top Rated Movies');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                nav.style.backgroundColor = '#141414';
+            } else {
+                nav.style.backgroundColor = 'transparent';
+            }
+        });
+
+        // Fetch Movies from TMDB API
+        const requests = {
+            fetchTrending: `/trending/all/week?language=en-US`,
+            fetchTopRated: `/movie/top_rated?language=en-US`,
+            fetchUpcoming: `/movie/upcoming?language=en-US`,
+        };
+
+        // Function to fetch video key and open modal
+        async function playTrailer(movieId, type = 'movie') {
+            try {
+                const response = await fetch(`${TMDB_BASE_URL}/${type}/${movieId}/videos?language=en-US`, {
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`
+                    }
+                });
+                const data = await response.json();
+                const trailer = data.results.find(v => v.type === 'Trailer' && v.site === 'YouTube') || data.results[0];
+
+                if (trailer) {
+                    const modal = document.getElementById('video-modal');
+                    const player = document.getElementById('video-player');
+                    player.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${trailer.key}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+                    modal.style.display = 'flex';
+                } else {
+                    alert("Trailer not available for this title.");
+                }
+            } catch (error) {
+                console.error("Error fetching trailer:", error);
+            }
+        }
+
+        // Close modal logic
+        document.querySelector('.close-modal').addEventListener('click', () => {
+            document.getElementById('video-modal').style.display = 'none';
+            document.getElementById('video-player').innerHTML = '';
+        });
+
+        async function getMovies(url, title, showRanks = false) {
+            try {
+                const response = await fetch(TMDB_BASE_URL + url, {
+                    headers: { Authorization: `Bearer ${TMDB_ACCESS_TOKEN}` }
+                });
+                const data = await response.json();
+                
+                const rowId = 'row-' + Math.random().toString(36).substr(2, 9);
+                const section = document.createElement('section');
+                section.className = 'row';
+                section.innerHTML = `
+                    <h2 class="row-title">${title}</h2>
+                    <div class="row-container">
+                        <button class="handle handlePrev">&#8249;</button>
+                        <div id="${rowId}" class="row-posters"></div>
+                        <button class="handle handleNext">&#8250;</button>
+                    </div>
+                `;
+                rowsContainer.appendChild(section);
+
+                const rowElement = document.getElementById(rowId);
+                section.querySelector('.handlePrev').onclick = () => scrollRow(rowId, -1);
+                section.querySelector('.handleNext').onclick = () => scrollRow(rowId, 1);
+                
+                data.results.forEach((movie, index) => {
+                    if (movie.poster_path) {
+                        const wrapper = document.createElement('div');
+                        wrapper.classList.add('poster-wrapper');
+
+                        // Add rank numbers for Top 10 Trending
+                        if (showRanks && index < 10) {
+                            const rank = document.createElement('div');
+                            rank.classList.add('rank-number');
+                            rank.innerText = index + 1;
+                            wrapper.appendChild(rank);
+                        }
+
+                        const poster = document.createElement('img');
+                        poster.src = `${IMG_PATH}${movie.poster_path}`;
+                        poster.alt = movie.title || movie.name;
+                        poster.classList.add('poster');
+                        
+                        poster.addEventListener('click', () => {
+                            playTrailer(movie.id, movie.media_type || (elementId === 'trending-row' ? 'movie' : 'movie'));
+                        });
+
+                        wrapper.appendChild(poster);
+                        rowElement.appendChild(wrapper);
+                    }
+                });
+
+                if (title === 'Trending Now' && data.results.length > 0) {
+                    updateHero(data.results[0]);
+                }
+            } catch (error) { console.error(error); }
+        }
+
+        function updateHero(movie) {
+            document.getElementById('hero-banner').style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0.8), transparent), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`;
+            document.getElementById('hero-title').innerText = movie.title || movie.name;
+            document.getElementById('hero-desc').innerText = movie.overview;
+            document.querySelector('.play-btn').onclick = () => playTrailer(movie.id, movie.media_type || 'movie');
+        }
+
+        function initHome() {
+            getMovies('/trending/all/week?language=en-US', 'Trending Now', true);
+            getMovies('/movie/top_rated?language=en-US', 'Top Rated Movies');
+            getMovies('/movie/upcoming?language=en-US', 'Upcoming Releases');
+        }
+
+        initHome();
+    </script>
+</body>
+</html>
