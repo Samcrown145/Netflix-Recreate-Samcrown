@@ -7,7 +7,7 @@
 @font-face {
     font-family: 'netflix-sans-core-variable-full';
     src: url('./fonts/netflix-sans-core-variable-full.woff2') format('woff2');
-    /* font-weight: bold; */
+    
     font-style: normal;
 }
 
@@ -32,11 +32,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 170px;
-    /* Aligns perfectly with the grid below */
+    
 }
 
 .logo img {
-    width: 148px;
+    width: 168px;
     height: auto;
     display: block;
 }
@@ -114,7 +114,7 @@ h3 {
     left: 1rem;
     top: 5%;
     transform: translateY(70%);
-    /* background-color: #fff; */
+    
     padding: 0 0.25rem;
     color: #999;
     transition: 0.2s ease all;
@@ -205,7 +205,7 @@ h3 {
     overflow: hidden;
     -webkit-mask-image: linear-gradient(to right,
             transparent 0%,
-            #000 4%,
+            #000 4%, 
             #000 96%,
             transparent 100%);
     mask-image: linear-gradient(to right,
@@ -254,9 +254,8 @@ h3 {
     height: 270px;
     cursor: pointer;
     transition: transform 0.3s ease;
-
-
-    /* scroll-snap-align: start; */
+    
+    
 }
 
 .carousel-item img {
@@ -336,7 +335,7 @@ h3 {
     max-width: 200px;
     font-weight: 400;
     line-height: 1.5;
-    /* margin: 0; */
+    
 }
 
 .card-section img {
@@ -463,7 +462,7 @@ h3 {
     left: 1rem;
     top: 4%;
     transform: translateY(70%);
-    /* background-color: #fff; */
+    
     padding: 0 0.25rem;
     color: #999;
     transition: 0.2s ease all;
@@ -586,9 +585,9 @@ footer a {
     margin-top: 30px;
 }
 
-/* ========================================================
-   RESPONSIVENESS (Mobile, Tablet & Large Screens)
-   ======================================================== */
+
+
+
 
 @media (max-width: 1024px) {
     .nav-bar {
@@ -600,7 +599,7 @@ footer a {
     }
 
     .logo img {
-        width: 120px;
+        width: 140px;
     }
 
     .hero-text h1 {
@@ -674,7 +673,7 @@ footer a {
     }
 
     .logo img {
-        width: 110px;
+        width: 130px;
     }
 
     .hero-text h1 {
@@ -741,7 +740,7 @@ footer a {
     }
 
     .logo img {
-        width: 100px;
+        width: 120px;
     }
 
     .Sign-in-button button {
